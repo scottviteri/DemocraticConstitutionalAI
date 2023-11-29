@@ -1,6 +1,7 @@
 import openai
 from openai import OpenAI
 import torch
+import csv
 
 client = OpenAI()
 
@@ -38,6 +39,12 @@ normalized_cosine_similarities = (cosine_similarities - torch.mean(cosine_simila
 
 normalized_scores = {group: score.item() for group, score in zip(group_constitution.keys(), normalized_cosine_similarities)}
 print(normalized_scores)
+
+with open('constitution_scores.csv', 'w') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Constitution Name', 'Constitution Content', 'Score'])
+    for group, score in normalized_scores.items():
+        writer.writerow([group, group_constitution[group], score])
 
 
 """Example new openai api usage

@@ -129,3 +129,18 @@ for epoch in tqdm(range(1)):  # number of epochs can be adjusted
 
         # Save the model weights
         torch.save(model.state_dict(), 'model_weights.pth')
+
+"""
+# Here is an example of how we will aggregate rewards given example weights a and b
+a, b = .2, .8
+model_1 = model
+model_2 = model
+
+outputs_1 = model_1(input_1, output_hidden_states=True)
+reward_1 = model_1.reward_head(outputs_1.hidden_states[-1][0,-1,:])
+
+outputs_2 = model_2(input_1, output_hidden_states=True)
+reward_2 = model_2.reward_head(outputs_1.hidden_states[-1][0,-1,:])
+
+aggregated_reward = a * reward_1 + b * reward_2
+"""

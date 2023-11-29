@@ -16,3 +16,4 @@ Pragmatic step 2 in more detail
 1. Load the HH RLHF dataset from huggingface
 2. Use gpt2 to generate pairs of completions
 3. Get gpt4 to pick which generation it likes better
+

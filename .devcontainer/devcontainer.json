@@ -1,0 +1,12 @@
+{
+    "name": "Python 3",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "3.8",
+            "INSTALL_NODE": "false"
+        }
+    }
+    // "postCreateCommand": "pip install -r requirements.txt"
+}

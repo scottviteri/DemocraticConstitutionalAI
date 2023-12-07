@@ -1,1 +1,5 @@
 dcai/
+__pycache__/
+rm_weights/*
+
+!rm_weights/.gitkeep

@@ -1,12 +1,12 @@
 from datasets import load_dataset
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+from transformers import GPT2Tokenizer
 from openai import OpenAI
 import os
 import csv
 from tqdm import tqdm
 from utils import constitutions
 from train_rm import load_model_with_reward_head
-from utils import constitutions
+from utils import constitutions, generated_preferences_path
 
 dataset_all = load_dataset("Anthropic/hh-rlhf")
     
@@ -65,8 +65,8 @@ def evaluate_constitution(response1, response2,  constitution):
         print(f"An error occurred: {e}")
         return 0
     
-def generate_csv(constitution_id: int):
-    with open(f'generated_preferences/{constitution_id}_preferences.csv', 'w', newline='', encoding='utf-8') as file:
+def generate_preferences(constitution_id: int):
+    with open(generated_preferences_path(constitution_id), 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(['Example_ID', 'Context', 'Response_1', 'Response_2', 'GPT4_Preference'])
 

@@ -4,6 +4,7 @@ from torch import nn
 import csv
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
+from utils import get_generated_preferences, rm_weight_path
 
 context, resp1, resp2, gpt4_pref = "Context", "Response_1", "Response_2", "GPT4_Preference"
 
@@ -32,7 +33,7 @@ def train_rm(constitution_id: int):
     model = load_model_with_reward_head()
 
     csv_dicts = [] 
-    with open(f'generated_preferences/{constitution_id}_preferences.csv', 'r', encoding='utf-8') as file:
+    with open(get_generated_preferences(constitution_id), 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         print(next(reader))
         for row in reader:
@@ -126,5 +127,4 @@ def train_rm(constitution_id: int):
 
 
             # Save the model weights
-            # TODO: name weights based on generated responses csv name
-            torch.save(model.state_dict(), f'rm_weights/{constitution_id}_weights.pth')
+            torch.save(model.state_dict(), rm_weight_path(constitution_id))

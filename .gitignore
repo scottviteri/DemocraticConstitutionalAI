@@ -1,5 +1,8 @@
 dcai/
 __pycache__/
 rm_weights/*
-
 !rm_weights/.gitkeep
+generated_preferences/*
+!generated_preferences/.gitkeep
+finetuned_weights/*
+!finetuned_weights/.gitkeep
